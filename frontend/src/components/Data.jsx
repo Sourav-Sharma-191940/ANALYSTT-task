@@ -21,7 +21,7 @@ function DataDisplay() {
   const recordPerPage = 3;
 
   useEffect(() => {
-    // Fetch data from your Node.js backend
+    // Fetch data from Node.js backend- added path in package.json
     axios
       .get("/api/data")
       .then((response) => {
@@ -32,12 +32,14 @@ function DataDisplay() {
       });
   }, []);
 
+  //searching
+  const filteredData = data.filter((item) =>
+  item.name.toLowerCase().includes(searchTerm.toLowerCase())
+);
+
+  // pagination
   const lastIndex = currentPage * recordPerPage;
   const firstIndex = lastIndex - recordPerPage;
-
-  const filteredData = data.filter((item) =>
-    item.name.toLowerCase().includes(searchTerm.toLowerCase())
-  );
 
   const records = filteredData.slice(firstIndex, lastIndex);
   const totalPages = Math.ceil(filteredData.length / recordPerPage);
@@ -49,16 +51,16 @@ function DataDisplay() {
   const prevDisabled = currentPage === 1;
   const nextDisabled = currentPage === totalPages;
 
-  const openModal = (item) => {
-    setSelectedItem(item);
-    setShowModal(true);
-  };
-
   const pageNumbers = [];
   for (let i = 1; i <= totalPages; i++) {
     pageNumbers.push(i);
   }
 
+  //modal 
+  const openModal = (item) => {
+    setSelectedItem(item);
+    setShowModal(true);
+  };
   return (
     <Container className="my-3">
       <h3 className="text-center mb-3 mt-5">Company's Details</h3>
@@ -109,6 +111,7 @@ function DataDisplay() {
               </Col>
             ))}
           </Row>
+          {/* pagination */}
           <Nav className="d-flex justify-content-center my-3">
             <ul className="pagination">
               <li className="page-item">
@@ -143,6 +146,8 @@ function DataDisplay() {
           </Nav>
         </div>
       )}
+
+      {/* Modal */}
       <Modal show={showModal} onHide={() => setShowModal(false)} size="lg">
         <Modal.Header closeButton>
           <Modal.Title>Details</Modal.Title>
@@ -180,12 +185,6 @@ function DataDisplay() {
                         <p>Work: {selectedItem.company.bs}</p>
                       </Col>
             </Row>
-            // <div>
-            //   <p>Name: {selectedItem.name}</p>
-            //   <p>Email: {selectedItem.email}</p>
-            //   <p>Address: {selectedItem.company.name}</p>
-            //   {/* Add more details as needed */}
-            // </div>
           )}
         </Modal.Body>
         <Modal.Footer>

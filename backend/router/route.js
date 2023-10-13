@@ -2,7 +2,7 @@ const express = require('express');
 const axios = require('axios');
 const router = express.Router();
 
-// Define the API route
+// Api call to fetch the data.
 router.get('/data', async (req, res) => {
   try {
     const response = await axios.get('https://jsonplaceholder.typicode.com/users');
