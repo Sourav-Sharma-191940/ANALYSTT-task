@@ -16,6 +16,8 @@ It has search functionality which enables user to search a specific company <br>
 It has the feature of pagination which decreases the load of the api. <br>
 On clicking on the details button user will able to see the complete detail of each company. <br>
 It's UI is mobile and tablet friendly <br>
+I have used error handling while fetching and displaying the data of api <br>
+When there will be no data to show it shows message "No rows to show" 
 
 
 # frontend
