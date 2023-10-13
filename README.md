@@ -9,6 +9,8 @@ For styling I have used react-bootstrap.
 
 ### This project is made using (MERN stack) MongoDB, ExpressJs, ReactJS & NodeJS.
 ### API used - https://jsonplaceholder.typicode.com/users
+### use this route to get the data in backend server- http://localhost:5000/api/data
+### use this route to get the data in backend server- http://localhost:3000/api/data 
 
 ### Features-
 User will able to see the details of the company <br>
